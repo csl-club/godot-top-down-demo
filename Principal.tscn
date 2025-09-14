@@ -1,0 +1,104 @@
+[gd_scene load_steps=13 format=4 uid="uid://bi6pbnrrqvysp"]
+
+[ext_resource type="Script" uid="uid://ckyhighlmuqop" path="res://character_controller.gd" id="1_4to2k"]
+[ext_resource type="PackedScene" uid="uid://x5shg478wj4i" path="res://bullet.tscn" id="2_a35id"]
+[ext_resource type="Texture2D" uid="uid://c5pg3undevfmb" path="res://ttd1.png" id="3_a35id"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4to2k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a35id"]
+size = Vector2(130.027, 87.7154)
+
+[sub_resource type="Gradient" id="Gradient_aaorx"]
+offsets = PackedFloat32Array(0.246753, 0.668831)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5eh06"]
+gradient = SubResource("Gradient_aaorx")
+fill = 1
+fill_from = Vector2(0.504587, 0.495413)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_a35id"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_aaorx"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5eh06"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5hs68"]
+texture = ExtResource("3_a35id")
+margins = Vector2i(5, 5)
+separation = Vector2i(25, 23)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_a35id")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_aaorx")
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_5eh06")
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_5hs68"]
+occlusion_layer_0/light_mask = 1
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_5hs68")
+
+[node name="Node" type="Node"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.0778748, 0.143796, 0.139682, 1)
+position = Vector2(11, 51)
+scale = Vector2(142411, -38687.9)
+texture = SubResource("CanvasTexture_4to2k")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_4to2k")
+bulletScene = ExtResource("2_a35id")
+
+[node name="Polygon2D" type="Polygon2D" parent="CharacterBody2D"]
+position = Vector2(-16, 10)
+rotation = -1.5708
+scale = Vector2(0.201, 0.115)
+polygon = PackedVector2Array(247.615, -207.722, -159.963, -207.724, 46.0155, 669.33)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(7.75, 6)
+scale = Vector2(0.734462, 0.618024)
+shape = SubResource("RectangleShape2D_a35id")
+
+[node name="Marker2D" type="Marker2D" parent="CharacterBody2D"]
+position = Vector2(76, 0)
+rotation = -1.5708
+gizmo_extents = 0.0
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(0.5, 0.5)
+
+[node name="PointLight2D" type="PointLight2D" parent="CharacterBody2D"]
+position = Vector2(-7, -5)
+scale = Vector2(7.45497, 7.65359)
+energy = 5.95
+shadow_enabled = true
+shadow_filter = 1
+texture = SubResource("GradientTexture2D_5eh06")
+texture_scale = 2.95
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(8.70229, 12.6631)
+tile_map_data = PackedByteArray("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")
+tile_set = SubResource("TileSet_5hs68")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.412152, 0.412152, 0.412152, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+rotation = -0.523598
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 1.0
